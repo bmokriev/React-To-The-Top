@@ -1,9 +1,15 @@
+import axios from 'axios';
 import React from 'react';
 import SearchBar from './SearchBar';
 
 class App extends React.Component {
   onSearchSubmit(term) {
-    console.log(term);
+    axios.get('https://api.unsplash.com/search/photos?query=cars', {
+      params: { query: term },
+      headers: {
+        Authorization: 'Client-ID WPoPw50NdzI0sYqnz1WXTjhpDILXl3-T-2XJxSmSalA',
+      },
+    });
   }
 
   render() {
