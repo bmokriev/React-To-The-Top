@@ -1,3 +1,4 @@
+import React from 'react';
 import Accordion from './components/Accordion';
 
 const items = [
@@ -15,6 +16,10 @@ const items = [
   },
 ];
 
+export default () => {
+  return (
     <div>
       <Accordion items={items} />
     </div>
+  );
+};
