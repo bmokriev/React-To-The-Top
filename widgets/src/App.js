@@ -17,10 +17,12 @@ import Search from './components/Search';
 //   },
 // ];
 
-export default () => {
+const App = () => {
   return (
     <div>
       <Search />
     </div>
   );
 };
+
+export default App;
