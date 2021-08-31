@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-  const [term, setTerm] = useState('');
+  const [term, setTerm] = useState('React');
   const [results, setResults] = useState([]);
-
-  console.log(results);
 
   useEffect(() => {
     const search = async () => {
@@ -22,8 +20,18 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    if (term) {
+    if (term && !results.length) {
       search();
+    } else {
+      const timeoutId = setTimeout(() => {
+        if (term) {
+          search();
+        }
+      }, 500);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }, [term]);
 
@@ -35,6 +43,7 @@ const Search = () => {
             className="ui button"
             href={`https://en.wikipedia.org?curid=${result.pageid}`}
             target="_blank"
+            rel="noreferrer"
           >
             Go
           </a>
