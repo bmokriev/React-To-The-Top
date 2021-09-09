@@ -50,6 +50,9 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
             {renderedOptions}
           </div>
         </div>
+        <p style={{ color: selected.value, marginTop: '50px' }}>
+          This text is {selected.value}
+        </p>
       </div>
     </div>
   );
