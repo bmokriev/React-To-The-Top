@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Figure from './components/Figure';
@@ -13,7 +13,34 @@ let selectedWord = words[Math.floor(Math.random() * words.length)];
 function App() {
   const [playable, setPlayable] = useState(true);
   const [correctLetters, setCorrectLetters] = useState([]);
-  const [wrongLetters, setВрongLetters] = useState([]);
+  const [wrongLetters, setWrongLetters] = useState([]);
+
+  useEffect(() => {
+    const handleKeydown = (event) => {
+      const { key, keyCode } = event;
+      if (playable && keyCode >= 65 && keyCode <= 90) {
+        const letter = key.toLowerCase();
+
+        if (selectedWord.includes(letter)) {
+          if (!correctLetters.includes(letter)) {
+            setCorrectLetters((currentLetters) => [...currentLetters, letter]);
+          } else {
+            //
+          }
+        } else {
+          if (!wrongLetters.includes(letter)) {
+            setWrongLetters((currentLetters) => [...currentLetters, letter]);
+          } else {
+            //
+          }
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeydown);
+    return () => {
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  }, [correctLetters, wrongLetters, playable]);
 
   return (
     <>
